@@ -1,0 +1,21 @@
+html, body {  height: 2000px; }
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+body, svg text {
+    font-family: pt-sans, helvetica, sans-serif;
+}
+#controls {
+    padding-top: 20px;
+    padding-bottom: 20px; 
+}
+
+/*===SVGs====*/
+
+
+
+
+
+
+
