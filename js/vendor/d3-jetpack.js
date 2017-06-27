@@ -2,9 +2,9 @@
         
     function jetpack(d3) {
         d3.selection.prototype.translate = function(xy) {
-            return this.attr('transform', function(d,i) {
-                return 'translate('+[typeof xy == 'function' ? xy(d,i) : xy]+')';
-            });
+                return this.style('transform', function(d,i) {
+                    return 'translate('+[typeof xy == 'function' ? xy(d,i) : xy[0] + 'px,'+xy[1] + 'px']+')';
+                });
         };
 
         d3.selection.prototype.tspans = function(lines, lh) {
@@ -20,7 +20,7 @@
         d3.selection.prototype.append = 
         d3.selection.enter.prototype.append = function(name) {
             var n = d3_parse_attributes(name), s;
-            console.log(name, n);
+            //console.log(name, n);
             name = n.attr ? n.tag : name;
             name = d3_selection_creator(name);
             s = this.select(function() {
@@ -106,6 +106,21 @@
             } : function (a, b) {
                 return b[key] < a[key] ? -1 : b[key] > a[key] ? 1 : b[key] >= a[key] ? 0 : NaN;
             };
+        };
+        
+        
+        d3.selection.prototype.moveToBack = function () {
+            return this.each(function () {
+                var firstChild = this.parentNode.firstChild;
+                if (firstChild) {
+                    this.parentNode.insertBefore(this, firstChild);
+                }
+            });
+        };
+        d3.selection.prototype.moveToFront = function () {
+            return this.each(function () {
+                this.parentNode.appendChild(this);
+            });
         };
     }
 
