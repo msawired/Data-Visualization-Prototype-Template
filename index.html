@@ -2,10 +2,6 @@
 <html class="no-js">
 
 <head> 
-    <script>
-        var __adobewebfontsappname__ = "code"
-    </script>
-    <script src="http://use.edgefonts.net/pt-sans:n4,i4,n7,i7:all.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title></title>
@@ -15,8 +11,8 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" src="https://openprocessing.org/assets/css/openprocessing.css">
 
-    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 
 <body>
@@ -24,22 +20,30 @@
         <div class="container">
             <div class="navbar-header">
 
-                <a class="navbar-brand" href="#">My Prototype</a>
+                <a class="navbar-brand" href="#">Portfolio Analysis Prototype</a>
             </div>
             <!--/.navbar-collapse -->
         </div>
     </div>
-
-    <div id="controls" class="container">
-        <div class="row text-center">
-            <div class="btn-group" data-toggle="buttons">
-
-            </div>
-        </div>
-    </div>
-    <!-- /container -->
-    <div id="content" class="container">
-
+    <div id="content" class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12">
+				<svg id="chart">
+					<defs>
+						<pattern id='pattern-slant' patternUnits='userSpaceOnUse'  width='5' height='2' patternTransform='scale(1) rotate(60)'>
+							<line stroke="white" stroke-linecap="square" stroke-width="9"  x1="0" y1="0" x2="0" y2="2"></line>
+						</pattern>
+						<mask id="pattern-mask" x="0" y="0" width="1" height="1">
+							<rect x="0" y="0" width="10000" height="10000" fill="url('#pattern-slant')" />
+						</mask>
+					</defs>
+				</svg>
+			</div>
+			<div id="controls" class="col-xs-12 col-sm-3">
+				<!-- <label>Show Cash <input type="checkbox" v-model="app.showCash"></label> -->
+				<label v-for="s in app.secs.slice().reverse()"><span class="legendBlock" :style="{'background': s.color}"></span>{{s.name}}  ${{app.numbers[s.name]}}<input type="checkbox" v-model="s.show" @change="updateChart"></label>
+			</div>
+		</div>
 
 
     </div>
@@ -52,14 +56,11 @@
     -->
 
     <script src="js/vendor/jquery-2.1.3.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/vendor/jquery-ui-1.11.2/jquery-ui.min.js"></script>
-    <!-- Uncomment for CDN d3 use
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    -->
-    <script src="js/vendor/d3v4/d3.min.js" charset="utf-8"></script>
-<!--    <script src="js/vendor/d3-jetpack.js" charset="utf-8"></script>-->
-<!--    <script src="js/sampleUsers.js"></script>-->
+    <script src="js/vendor/bootstrap.min.js"></script>	
+	<script src="https://d3js.org/d3.v6.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="https://openprocessing.org/assets/js/op_components.js"></script>
+
     <script src="js/main.js"></script>
 
 </body>
